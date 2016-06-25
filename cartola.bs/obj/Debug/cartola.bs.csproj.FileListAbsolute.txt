@@ -1,0 +1,5 @@
+d:\documents\visual studio 2013\Projects\cartola\cartola.bs\bin\Debug\cartola.bs.dll
+d:\documents\visual studio 2013\Projects\cartola\cartola.bs\bin\Debug\cartola.bs.pdb
+d:\documents\visual studio 2013\Projects\cartola\cartola.bs\obj\Debug\cartola.bs.csprojResolveAssemblyReference.cache
+d:\documents\visual studio 2013\Projects\cartola\cartola.bs\obj\Debug\cartola.bs.dll
+d:\documents\visual studio 2013\Projects\cartola\cartola.bs\obj\Debug\cartola.bs.pdb
