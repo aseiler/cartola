@@ -9,31 +9,22 @@ using cartola.entity;namespace cartola.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Home()
         {
             return View();
         }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
 
-            return View();
+        public ActionResult Listar()
+        {
+            return View(ListarAtletas());
         }
 
-        public ActionResult Contact()
+        public List<Atleta> ListarAtletas()
         {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
-
-        public ActionResult Get()
-        {
-
+            List<Atleta> lstAtleta = new List<Atleta>();
             Atleta oAtleta = new Atleta();
-            oAtleta.Get();
-            return View();
+            return  oAtleta.Get();
         }
     }
 }

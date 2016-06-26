@@ -3,3 +3,10 @@ d:\documents\visual studio 2013\Projects\cartola\cartola.bs\bin\Debug\cartola.bs
 d:\documents\visual studio 2013\Projects\cartola\cartola.bs\obj\Debug\cartola.bs.csprojResolveAssemblyReference.cache
 d:\documents\visual studio 2013\Projects\cartola\cartola.bs\obj\Debug\cartola.bs.dll
 d:\documents\visual studio 2013\Projects\cartola\cartola.bs\obj\Debug\cartola.bs.pdb
+d:\Documents\GitHub\cartola\cartola.bs\bin\Debug\cartola.bs.dll
+d:\Documents\GitHub\cartola\cartola.bs\bin\Debug\cartola.bs.pdb
+d:\Documents\GitHub\cartola\cartola.bs\bin\Debug\Newtonsoft.Json.dll
+d:\Documents\GitHub\cartola\cartola.bs\bin\Debug\Newtonsoft.Json.xml
+d:\Documents\GitHub\cartola\cartola.bs\obj\Debug\cartola.bs.dll
+d:\Documents\GitHub\cartola\cartola.bs\obj\Debug\cartola.bs.pdb
+d:\Documents\GitHub\cartola\cartola.bs\obj\Debug\cartola.bs.csprojResolveAssemblyReference.cache

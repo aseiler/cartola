@@ -216,7 +216,7 @@
     <Content Include="Account\ResetPasswordConfirmation.cshtml" />
     <Content Include="Account\SendCode.cshtml" />
     <Content Include="Account\VerifyCode.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Home.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
