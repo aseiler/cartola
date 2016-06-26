@@ -1,10 +1,29 @@
-﻿
+﻿@using cartola.entity
+@model List<Atleta>
 @{
     ViewBag.Title = "Home";
 }
 
-<h2>Home</h2>
-
-
-
-
+<ul>
+    @{
+        if (Model != null)
+        {
+            foreach (Atleta oAtleta in Model.OrderBy(x=>x.IdPosicao).ThenBy(x=> x.Nome))
+            {
+                <li>
+                    
+                    <img src="@oAtleta.Foto.Replace("_FORMATO","_140x140")" width="60" height="60" />
+                    <ul>
+                        <li>Nome:@oAtleta.Apelido</li>
+                        <li>Preço:@oAtleta.Preco</li>
+                        <li>Variação: @oAtleta.Variação</li>
+                    </ul>
+                    <ul>
+                        <li>Gol:@oAtleta.Scout.Gol</li>
+                    </ul>
+                </li>
+                    
+            }
+        }
+    }
+</ul>

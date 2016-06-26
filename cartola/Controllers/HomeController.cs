@@ -11,13 +11,13 @@ using cartola.entity;namespace cartola.Controllers
     {
         public ActionResult Home()
         {
-            return View();
+            return View(ListarAtletas());
         }
 
 
         public ActionResult Listar()
         {
-            return View(ListarAtletas());
+            return View();
         }
 
         public List<Atleta> ListarAtletas()

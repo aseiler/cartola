@@ -36,7 +36,7 @@ namespace cartola.entity
         public string IdClube { get; set; }
 
         [JsonProperty(PropertyName = "posicao_id")]
-        public string IdPosição { get; set; }
+        public string IdPosicao { get; set; }
 
         [JsonProperty(PropertyName = "status_id")]
         public string IdStatus { get; set; }
@@ -57,7 +57,7 @@ namespace cartola.entity
         public string NumeroJogos { get; set; }
 
         [JsonProperty(PropertyName = "scout")]
-        public Scout ListaScout { get; set; }
+        public Scout Scout { get; set; }
 
 
         #endregion
