@@ -27,34 +27,34 @@ namespace cartola.entity
         public string Foto { get; set; }
 
         [JsonProperty(PropertyName = "atleta_id")]
-        public string IdAtleta { get; set; }
+        public int IdAtleta { get; set; }
 
         [JsonProperty(PropertyName = "rodada_id")]
-        public string IdRodada { get; set; }
+        public int IdRodada { get; set; }
 
         [JsonProperty(PropertyName = "clube_id")]
-        public string IdClube { get; set; }
+        public int IdClube { get; set; }
 
         [JsonProperty(PropertyName = "posicao_id")]
-        public string IdPosicao { get; set; }
+        public int IdPosicao { get; set; }
 
         [JsonProperty(PropertyName = "status_id")]
-        public string IdStatus { get; set; }
+        public int IdStatus { get; set; }
 
         [JsonProperty(PropertyName = "pontos_num")]
-        public string NumeroPontos { get; set; }
+        public decimal NumeroPontos { get; set; }
 
         [JsonProperty(PropertyName = "preco_num")]
-        public string Preco { get; set; }
+        public decimal Preco { get; set; }
 
         [JsonProperty(PropertyName = "variacao_num")]
-        public string Variação { get; set; }
+        public decimal Variação { get; set; }
 
         [JsonProperty(PropertyName = "media_num")]
-        public string Media { get; set; }
+        public decimal Media { get; set; }
 
         [JsonProperty(PropertyName = "jogos_num")]
-        public string NumeroJogos { get; set; }
+        public int NumeroJogos { get; set; }
 
         [JsonProperty(PropertyName = "scout")]
         public Scout Scout { get; set; }

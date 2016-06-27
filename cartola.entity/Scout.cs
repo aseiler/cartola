@@ -11,34 +11,34 @@ namespace cartola.entity
     {
 
         [JsonProperty(PropertyName = "CA")]
-        public string CartaoAmarelo { get; set; }
+        public int CartaoAmarelo { get; set; }
 
         [JsonProperty(PropertyName = "FC")]
-        public string FaltaCometida { get; set; }
+        public int FaltaCometida { get; set; }
         
         [JsonProperty(PropertyName = "FD")]
-        public string FinalizacaoDefendida { get; set; }
+        public int FinalizacaoDefendida { get; set; }
         
         [JsonProperty(PropertyName = "FF")]
-        public string FinalizacaoFora { get; set; }
+        public int FinalizacaoFora { get; set; }
         
         [JsonProperty(PropertyName = "FS")]
-        public string FaltaSofrida { get; set; }
+        public int FaltaSofrida { get; set; }
         
         [JsonProperty(PropertyName = "FT")]
-        public string FinalizacaoTrave { get; set; }
+        public int FinalizacaoTrave { get; set; }
         
         [JsonProperty(PropertyName = "G")]
-        public string Gol { get; set; }
+        public int Gol { get; set; }
         
         [JsonProperty(PropertyName = "I")]
-        public string Impedimento { get; set; }
+        public int Impedimento { get; set; }
         
         [JsonProperty(PropertyName = "PE")]
-        public string PasseErrado { get; set; }
+        public int PasseErrado { get; set; }
        
         [JsonProperty(PropertyName = "RB")]
-        public string RoubadaBola { get; set; }
+        public int RoubadaBola { get; set; }
 
 
     }

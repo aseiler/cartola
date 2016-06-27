@@ -1,0 +1,43 @@
+﻿body {
+}
+
+.foto_60x60 {
+    width: 60px;
+    height: 60px;
+    float:left;
+}
+
+li.jogador {
+    padding-bottom: 20px;
+}
+
+#atletas li {
+    list-style:none;
+}
+
+ul#info span.red {
+    color:red;
+    font-weight: bold;
+}
+
+ul#info span.green {
+    color:green;
+    font-weight: bold;
+}
+
+li.jogador ul.scout {
+margin-left:30px;
+border-width: thin;
+border-style: dashed;
+border-color: gray;
+border-top: none;
+border-left: none;
+display:none;
+}
+
+#img_icon_pm {
+    background-image: url('../Imagem/plus-minus-icon-27953.png');
+    float:right;
+    width:60px;
+    height:60px;
+}
