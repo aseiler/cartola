@@ -62,7 +62,7 @@ namespace cartola.entity
 
         #endregion
 
-        public List<Atleta> Get()
+        public List<Atleta> Get(string slug)
         {
 
             using (var client = new HttpClient())
@@ -72,7 +72,7 @@ namespace cartola.entity
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                HttpResponseMessage response = client.GetAsync("time/loser1-fc").Result;
+                HttpResponseMessage response = client.GetAsync("time/" + slug.Replace(" ","-")).Result;
                 if (response.IsSuccessStatusCode)
                 {
                     Task<string> steste = response.Content.ReadAsStringAsync();

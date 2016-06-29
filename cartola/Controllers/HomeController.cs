@@ -9,22 +9,11 @@ using cartola.entity;namespace cartola.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Home()
-        {
-            return View(ListarAtletas());
-        }
 
-
-        public ActionResult Listar()
+        public ActionResult Index()
         {
-            return View();
-        }
+            return View("Home");
 
-        public List<Atleta> ListarAtletas()
-        {
-            List<Atleta> lstAtleta = new List<Atleta>();
-            Atleta oAtleta = new Atleta();
-            return  oAtleta.Get();
         }
     }
 }

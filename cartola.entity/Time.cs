@@ -9,6 +9,8 @@ namespace cartola.entity
 {
     public class Time
     {
+        public string slug { get; set; }
+
         [JsonProperty(PropertyName = "Atletas")]
         public List<Atleta> ListaAtletas { get; set; }
     }

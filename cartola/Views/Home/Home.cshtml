@@ -1,41 +1,9 @@
-﻿@using cartola.entity
-@model List<Atleta>
+﻿
 @{
     ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<ul id="atletas">
-    @{
-        if (Model != null)
-        {
-            foreach (Atleta oAtleta in Model.OrderBy(x=>x.IdPosicao).ThenBy(x=> x.Nome))
-            {
-                <li class="jogador">
-                    
-                    <img class="foto_60x60" src=@oAtleta.Foto.Replace("_FORMATO","_140x140") />
-                    <img id="img_icon_pm" src="~/Imagem/plus-minus-icon-27953.png" />
-                    <ul id="info">
-                        <li>Nome:@oAtleta.Apelido</li>
-                        <li>Preço:@oAtleta.Preco</li>
-                        <li>Variação: <span class="@(@oAtleta.Variação>0?"green":"red")">@oAtleta.Variação</span></li>
-                    </ul>
-                    <ul class="scout">
-                        <li>Cartao Amarelo:@oAtleta.Scout.CartaoAmarelo</li>
-                        <li>Falta Cometida:@oAtleta.Scout.FaltaCometida</li>
-                        <li>Finalização Defendida:@oAtleta.Scout.FinalizacaoDefendida</li>
-                        <li>Finalizacao Fora:@oAtleta.Scout.FinalizacaoFora</li>
-                        <li>Falta Sofrida:@oAtleta.Scout.FaltaSofrida</li>
-                        <li>Finalizacao Trave:@oAtleta.Scout.FinalizacaoTrave</li>
-                        <li>Gol:@oAtleta.Scout.Gol</li>
-                        <li>Impedimento:@oAtleta.Scout.Impedimento</li>
-                        <li>Passe Errado:@oAtleta.Scout.PasseErrado</li>
-                        <li>Gol:@oAtleta.Scout.Gol</li>
-                        <li>Roubada de Bola:@oAtleta.Scout.RoubadaBola</li>
-                    </ul>
-                </li>
-        
-                    
-            }
-        }
-    }
-</ul>
+<a href='@Url.Action("Index","Times")' >Times </a>
+
+

@@ -1,0 +1,7 @@
+d:\Documents\GitHub\cartola\cartola.bs\bin\Release\cartola.bs.dll
+d:\Documents\GitHub\cartola\cartola.bs\bin\Release\cartola.bs.pdb
+d:\Documents\GitHub\cartola\cartola.bs\bin\Release\Newtonsoft.Json.dll
+d:\Documents\GitHub\cartola\cartola.bs\bin\Release\Newtonsoft.Json.xml
+d:\Documents\GitHub\cartola\cartola.bs\obj\Release\cartola.bs.csprojResolveAssemblyReference.cache
+d:\Documents\GitHub\cartola\cartola.bs\obj\Release\cartola.bs.dll
+d:\Documents\GitHub\cartola\cartola.bs\obj\Release\cartola.bs.pdb

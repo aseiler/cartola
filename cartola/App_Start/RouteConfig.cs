@@ -16,7 +16,17 @@ namespace cartola
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Home", id = UrlParameter.Optional }
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional });
+
+                routes.MapRoute(
+                name: "Listar",
+                url: "times/listar/{slug}",
+                defaults: new { controller = "Times", action = "Listar", slug = UrlParameter.Optional });
+
+                routes.MapRoute(
+                name: "Times",
+                url: "Times",
+                defaults: new { controller = "Times", action = "Index", id = UrlParameter.Optional }
             );
         }
     }
