@@ -14,7 +14,6 @@ namespace cartola.entity
 {
     public class Atleta
     {
-
         #region Properties
         
         [JsonProperty(PropertyName="nome")]
@@ -59,30 +58,9 @@ namespace cartola.entity
         [JsonProperty(PropertyName = "scout")]
         public Scout Scout { get; set; }
 
+        public AtletaPontuado oAtletaPontuado { get; set; }
 
         #endregion
-
-        public List<Atleta> Get(string slug)
-        {
-
-            using (var client = new HttpClient())
-            {
-
-                client.BaseAddress = new Uri("https://api.cartolafc.globo.com/");
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                HttpResponseMessage response = client.GetAsync("time/" + slug.Replace(" ","-")).Result;
-                if (response.IsSuccessStatusCode)
-                {
-                    Task<string> steste = response.Content.ReadAsStringAsync();
-                    
-                    Time oTime = JsonConvert.DeserializeObject<Time>(steste.Result.ToString());
-                    return oTime.ListaAtletas ;
-                }
-            }
-            return new List<Atleta>();
-        }
     }
 }
 
