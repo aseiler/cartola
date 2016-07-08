@@ -14,19 +14,37 @@ namespace cartola.Controllers
         // GET: Times
         public ActionResult Index()
         {
+            if (Request.Cookies["Cartola"]["Times"] != null)
+            {
+                Listar(null);
+            }
             return View("Times");
         }
 
 
-        public ActionResult Listar(List<Time> lstTime)
+        public ActionResult Listar(string slug)
         {
             List<Time> oReturn = new List<Time>();
-            foreach (Time oTime in lstTime) {
-                if (oTime.slug != null)
-                oReturn.Add(ListarTimes(oTime.slug));
+            List<string> lstSlug = new List<string>();
+            Response.Cookies["Cartola"].Expires = DateTime.Now.AddDays(10);
+            if (slug != null)
+                lstSlug.Add(slug);
+            if (Request.Cookies["Cartola"]["Times"] != null)
+            {
+                foreach (string o in Request.Cookies["Cartola"]["Times"].Split(','))
+                {
+                    if(!o.Equals(""))
+                    lstSlug.Add(o);
+                    Response.Cookies["Cartola"]["Times"] = null;
+                }
             }
-
+            foreach (string x in lstSlug.Distinct().ToList())
+            { 
+                oReturn.Add(ListarTimes(x));
+                Response.Cookies["Cartola"]["Times"] += x + ",";
+            }
             return View("Times", oReturn);
+
         }
 
         public Time ListarTimes(string slug)
@@ -36,14 +54,21 @@ namespace cartola.Controllers
             Pontuados oPontuados = new Pontuados();
             JObject oPont = oPontuados.Get();
             Time oT = oTime.Get(slug);
+            oT.slug = slug;
 
-            foreach (Atleta o in oT.ListaAtletas)
+            if (oT.ListaAtletas != null)
             {
-                if (oPont["atletas"][o.IdAtleta.ToString()] != null)
-                    o.oAtletaPontuado = JsonConvert.DeserializeObject<AtletaPontuado>(oPont["atletas"][o.IdAtleta.ToString()].ToString());
-                else
-                    o.oAtletaPontuado = new AtletaPontuado();
+                foreach (Atleta o in oT.ListaAtletas)
+                {
+                    if (oPont != null && oPont["atletas"][o.IdAtleta.ToString()] != null)
+                        o.oAtletaPontuado = JsonConvert.DeserializeObject<AtletaPontuado>(oPont["atletas"][o.IdAtleta.ToString()].ToString());
+                    else
+                        o.oAtletaPontuado = new AtletaPontuado();
+                }
             }
+            else
+                oT.ListaAtletas = new List<Atleta>();
+            
 
             return oT;
         }
