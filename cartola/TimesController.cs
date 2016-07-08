@@ -14,9 +14,10 @@ namespace cartola.Controllers
         // GET: Times
         public ActionResult Index()
         {
-            if (Request.Cookies["Cartola"] != null && Request.Cookies["Cartola"]["Times"] != null)
+            if (Request.Cookies["Cartola"]["Times"] != null)
+            {
                 Listar(null);
-
+            }
             return View("Times");
         }
 
