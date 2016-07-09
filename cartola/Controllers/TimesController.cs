@@ -42,6 +42,9 @@ namespace cartola.Controllers
                 oReturn.Add(ListarTimes(x));
                 Response.Cookies["Cartola"]["Times"] += x + ",";
             }
+
+            oReturn = (List<Time>)oReturn.OrderByDescending(x => x.Pontos).ToList();
+
             return View("Times", oReturn);
 
         }
@@ -67,7 +70,8 @@ namespace cartola.Controllers
             }
             else
                 oT.ListaAtletas = new List<Atleta>();
-            
+
+            oT.Pontos = oT.ListaAtletas.Sum(x => x.oAtletaPontuado.Pontuacao);
 
             return oT;
         }

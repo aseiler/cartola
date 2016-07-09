@@ -9,6 +9,9 @@
 
 li.jogador {
     padding-bottom: 20px;
+    border-style: solid;
+    border-width: thin;
+    margin-bottom:10px;
 }
 
 #atletas li {

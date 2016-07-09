@@ -32,49 +32,46 @@
             {
                
         <li class="time">
-            <ul style="border-style:solid;border-color:#@oTime.oTimeInfo.CorBordaEscudo;background-color:#@oTime.oTimeInfo.CorFundoEscudo;">
+            <ul style="border-style:solid;border-color:#@oTime.oTimeInfo.CorBordaEscudo;background-color:#@oTime.oTimeInfo.CorFundoEscudo;color:grey;">
                 <div>
                     <img src="@oTime.oTimeInfo.URLEscudoPNG" class="foto_60x60" />
                     <p><b>@oTime.oTimeInfo.Nome</b></p>
                     <p>@oTime.oTimeInfo.NomeCartola</p>
-                    <input type="button" onclick="ExibirTime('@oTime.slug')"  value="Mostrar"/>
-                    <span>
-                        <h1>
-                            @oTime.ListaAtletas.Sum(x => x.oAtletaPontuado.Pontuacao)
-                        </h1>
-                    </span>
+                    <input type="button" value="Mostrar" style="float:right;margin-top:-35px;margin-right: 15px;" onclick="ExibirTime('@oTime.slug')" />
+                    <span class="@(oTime.Pontos > 0 ? "green" : "red")"  style="float:right;margin-top:-100px;margin-right: 100px;"><h1> @oTime.Pontos.ToString("0.00")</h1> </span>
                 </div>
             </ul>
-        <ul class=@oTime.slug style="display:none">
-            @foreach (Atleta oAtleta in oTime.ListaAtletas.OrderBy(x => x.IdPosicao).ThenBy(x => x.Nome))
-            {
-                <li class="jogador">
+            <ul class=@oTime.slug style="display:none">
+                @foreach (Atleta oAtleta in oTime.ListaAtletas.OrderBy(x => x.IdPosicao).ThenBy(x => x.Nome))
+                {
+                    <li class="jogador">
 
-                    <img class="foto_60x60" src=@oAtleta.Foto.Replace("_FORMATO","_140x140") />
-                    @*<img id="img_icon_pm" src="~/Imagem/plus-minus-icon-27953.png" />*@
-                    <ul id="info">
-                        <li>Nome:@oAtleta.Apelido</li>
-                        <li>Preço:@oAtleta.Preco</li>
-                        <li>Pontos:<span class="@(@oAtleta.oAtletaPontuado.Pontuacao > 0 ? "green" : "red")">@oAtleta.oAtletaPontuado.Pontuacao</span></li>
-                        <li>Variação: <span class="@(@oAtleta.Variação>0?"green":"red")">@oAtleta.Variação</span></li>
-                    </ul>
-                    <ul class="scout">
-                        <li>Cartao Amarelo:@oAtleta.Scout.CartaoAmarelo</li>
-                        <li>Falta Cometida:@oAtleta.Scout.FaltaCometida</li>
-                        <li>Finalização Defendida:@oAtleta.Scout.FinalizacaoDefendida</li>
-                        <li>Finalizacao Fora:@oAtleta.Scout.FinalizacaoFora</li>
-                        <li>Falta Sofrida:@oAtleta.Scout.FaltaSofrida</li>
-                        <li>Finalizacao Trave:@oAtleta.Scout.FinalizacaoTrave</li>
-                        <li>Gol:@oAtleta.Scout.Gol</li>
-                        <li>Impedimento:@oAtleta.Scout.Impedimento</li>
-                        <li>Passe Errado:@oAtleta.Scout.PasseErrado</li>
-                        <li>Gol:@oAtleta.Scout.Gol</li>
-                        <li>Roubada de Bola:@oAtleta.Scout.RoubadaBola</li>
-                    </ul>
-                </li>
+                        <img class="foto_60x60" src=@oAtleta.Foto.Replace("_FORMATO","_140x140") />
+                        @*<img id="img_icon_pm" src="~/Imagem/plus-minus-icon-27953.png" />*@
+                        <ul id="info">
+                            <li>Nome:@oAtleta.Apelido</li>
+                            <li>Preço:@oAtleta.Preco</li>
+                            <li><span class="@(@oAtleta.oAtletaPontuado.Pontuacao > 0 ? "green" : "red")" style="font-size:20px;float:right;margin-right:15px;">@oAtleta.oAtletaPontuado.Pontuacao.ToString("0.00")</span></li>
+                            <li>Variação: <span class="@(@oAtleta.Variação>0?"green":"red")">@oAtleta.Variação</span></li>
+                        </ul>
+                        <ul class="scout">
+                            <li>Cartao Amarelo:@oAtleta.Scout.CartaoAmarelo</li>
+                            <li>Falta Cometida:@oAtleta.Scout.FaltaCometida</li>
+                            <li>Finalização Defendida:@oAtleta.Scout.FinalizacaoDefendida</li>
+                            <li>Finalizacao Fora:@oAtleta.Scout.FinalizacaoFora</li>
+                            <li>Falta Sofrida:@oAtleta.Scout.FaltaSofrida</li>
+                            <li>Finalizacao Trave:@oAtleta.Scout.FinalizacaoTrave</li>
+                            <li>Gol:@oAtleta.Scout.Gol</li>
+                            <li>Impedimento:@oAtleta.Scout.Impedimento</li>
+                            <li>Passe Errado:@oAtleta.Scout.PasseErrado</li>
+                            <li>Gol:@oAtleta.Scout.Gol</li>
+                            <li>Roubada de Bola:@oAtleta.Scout.RoubadaBola</li>
+                        </ul>
+                    </li>
 
-            }
-        </ul>
+                }
+            </ul>
+
     </li>
             }
         }
