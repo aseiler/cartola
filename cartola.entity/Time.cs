@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -41,13 +42,12 @@ namespace cartola.entity
         public Time Get(string slug)
         {
 
-            using (var client = new HttpClient())
+            using (var client = new HttpClient(new HttpClientHandler { UseDefaultCredentials = false }))
             {
-
                 client.BaseAddress = new Uri("https://api.cartolafc.globo.com/");
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
+                
                 HttpResponseMessage response = client.GetAsync("time/" + slug.Replace(" ", "-")).Result;
                 if (response.IsSuccessStatusCode)
                 {
