@@ -9,7 +9,7 @@
 <script type="text/javascript">
     function ExibirTime(TimeSlug) {
 
-        $("." + TimeSlug).css({ 'display': ($("." + TimeSlug).css('display')=='block'?'none':'block') });
+        $("." + TimeSlug).css({ 'display': ($("." + TimeSlug).css('display')=='inline-flex'?'none':'inline-flex') });
     }
 
     function SombraMouseOut(slug){
@@ -20,7 +20,27 @@
         $("#" + slug).css({ 'box-shadow': '2px 2px lightgrey' });
     }
 
-    //setTimeout("location.reload(true);", 120000);
+    function AutoRefresh(element){
+        console.log(element)
+        var x = $("#"+element).prop("checked");
+        //Colocando valor no cookie
+        var now = new Date();
+        now.setTime(now.getTime() + 1 * 3600 * 1000);
+        document.cookie = element+"_checked="+ x.toString()+";expires="+now.toUTCString()+";";
+        setTimeout("location.reload(true);", 120000);
+    }
+
+    $(document).ready(function(){
+        var x = getCookie();
+        $("#AutoRefreshChk").prop("checked") = x.pop();
+    });
+
+    function getCookie(){
+        var list = document.cookie.split(";");
+        return x[0];
+
+    }
+
 </script>
 
 @using (Html.BeginForm("Listar", "Times", FormMethod.Get))
@@ -29,6 +49,16 @@
     @Html.TextBox("slug",null, new { data_bind = "value: Name", @id = "txtslugadd" });          
   
     <input type="submit" class="" value="Add" />
+    <br>
+    <div id="ButtonPanel">
+        <ul>
+                <li id="autoli" onmouseover="SombraMouseOver('autoli')" onmouseout="SombraMouseOut('autoli')" ><span>Auto refresh</span>
+                <input type="checkbox" id="AutoRefreshChk" onchange="AutoRefresh('AutoRefreshChk')"></li>
+                <li id="manualli" onmouseover="SombraMouseOver('manualli')" onmouseout="SombraMouseOut('manualli')" >
+                    <a  href="#" onclick="window.location.reload()">Atualizar</a>
+                </li>
+        </ul>
+    </div>
 }
 <span id="refreshtime"></span>
 
@@ -43,24 +73,25 @@
                 <li class="time">
                 <ul class="timedata" style="border-color:#@oTime.oTimeInfo.CorBordaEscudo;background-color:#@oTime.oTimeInfo.CorFundoEscudo">
                     <div>
-                        <img src="@oTime.oTimeInfo.URLEscudoPNG" class="foto_60x60" />
+                        <img src="@oTime.oTimeInfo.URLEscudoPNG" class="foto_60x60_escudo" />
                         <p><b>@oTime.oTimeInfo.Nome</b></p>
                         <p>@oTime.oTimeInfo.NomeCartola</p>
                         <img class="btnlistar" src="//cartola-bz.umbler.net/Imagem/drag_list_down1600.png" onclick="ExibirTime('@oTime.slug')" alt="Listar @oTime.oTimeInfo.Nome" id="btnlistar_@oTime.slug" onmouseover="SombraMouseOver('btnlistar_@oTime.slug')" onmouseout="SombraMouseOut('btnlistar_@oTime.slug')">
                         <span class="@(oTime.Pontos > 0 ? "green" : "red")" style="float:right;margin-top:-85px;margin-right: 100px;"><h1> @oTime.Pontos.ToString("0.00")</h1> </span>
                     </div>
                 </ul>
-                <ul class=@oTime.slug style="display:none">
+                <ul class=@oTime.slug style="columns:3;display:none;display;margin-left:-45px;padding-bottom:10px">
                     @foreach (Atleta oAtleta in oTime.ListaAtletas.OrderBy(x => x.IdPosicao).ThenBy(x => x.Nome))
                     {
+                        
                         <li class="jogador">
-
-                            <img class="foto_60x60" src=@oAtleta.Foto.Replace("_FORMATO","_140x140") />
-                            @*<img id="img_icon_pm" src="~/Imagem/plus-minus-icon-27953.png" />*@
+                                <img class="foto_60x60" src=@oAtleta.Foto.Replace("_FORMATO","_140x140") title="@oAtleta.Apelido"/>
+                                <span class="@(@oAtleta.oAtletaPontuado.Pontuacao != 0 ?(@oAtleta.oAtletaPontuado.Pontuacao > 0 ? "nota_green" : "nota_red"):"nota")">
+                                    @oAtleta.oAtletaPontuado.Pontuacao.ToString("0.00")
+                                </span>
                             <ul id="info">
                                 <li>Nome:@oAtleta.Apelido</li>
                                 <li>Preço:@oAtleta.Preco</li>
-                                <li><span class="@(@oAtleta.oAtletaPontuado.Pontuacao > 0 ? "green" : "red")" style="font-size:20px;float:right;margin-right:15px;">@oAtleta.oAtletaPontuado.Pontuacao.ToString("0.00")</span></li>
                                 <li>Variação: <span class="@(@oAtleta.Variação>0?"green":"red")">@oAtleta.Variação</span></li>
                             </ul>
                             <ul class="scout">

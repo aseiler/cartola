@@ -5,14 +5,19 @@
 .foto_60x60 {
     width: 60px;
     height: 60px;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: thin;
+}
+
+.foto_60x60_escudo {
+    width: 60px;
+    height: 60px;
     float:left;
 }
 
 li.jogador {
-    padding-bottom: 20px;
-    border-style: solid;
-    border-width: thin;
-    margin-bottom:10px;
+
 }
 
 #atletas li {
@@ -44,12 +49,16 @@ color:grey;
     font-weight: bold;
     }
 
-ul#info span.red {
+ul#info {
+    display:none;
+}
+
+.red {
     color:red;
     font-weight: bold;
 }
 
-ul#info span.green {
+.green {
     color:green;
     font-weight: bold;
 }
@@ -72,9 +81,91 @@ display:none;
 }
 
 .btnlistar{
-    width: 60px;
-    height: 60px;
+    width: 45px;
+    height: 45px;
     float: right;
-    margin-top: -75px;
+    margin-top: -65px;
     margin-right: 15px;
+}
+
+.nota_green{
+    font-size:20px;
+    float:left;
+    margin-top:-15px;
+    margin-left: 15px;
+    position: absolute;
+    color: green;
+    background-color: lightgreen;
+    border-radius: 5px;
+    padding: 1px;
+    font-weight: bold;
+}
+
+.nota_red{
+    font-size:20px;
+    float:left;
+    margin-top:-15px;
+    margin-left: 15px;
+    position: absolute;
+    color: red;
+    background-color: #ffaea8;
+    border-radius: 5px;
+    padding: 1px;
+    font-weight: bold;   
+}
+
+.nota{
+    font-size:20px;
+    float:left;
+    margin-top:-15px;
+    margin-left: 15px;
+    position: absolute;
+    background-color:white;
+    border-radius: 5px;
+    padding: 1px;
+    font-weight: bold;   
+}
+
+#ButtonPanel{
+    background: lightskyblue;
+    border-style: solid;
+    border-color: cornflowerblue;
+    border-radius: 5px 5px;
+    margin: 15px;
+    margin-left: 0px;
+    text-align: right;
+    padding-right: 30px;
+}
+
+#ButtonPanel a{
+    text-decoration: none;
+    background-color: cornflowerblue;
+    border-color: cornflowerblue;
+    border-style: solid;
+    border-radius: 5px 5px;
+    color: white;
+    font-weight: bold;
+    padding: 3px;
+}
+
+#ButtonPanel a:hover a:visited a:active {
+    text-decoration: none;
+}
+
+
+#ButtonPanel ul{
+    display: inline-flex;
+    list-style: none;
+    }
+
+#ButtonPanel ul li{
+    text-decoration: none;
+    background-color: cornflowerblue;
+    border-color: cornflowerblue;
+    border-style: solid;
+    border-radius: 5px 5px;
+    color: white;
+    font-weight: bold;
+    padding: 3px;
+    margin-left: 10px;
 }
