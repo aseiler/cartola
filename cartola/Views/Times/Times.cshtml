@@ -31,13 +31,14 @@
     }
 
     $(document).ready(function(){
-        var x = getCookie();
-        $("#AutoRefreshChk").prop("checked") = x.pop();
+        $("#AutoRefreshChk").prop("checked",Boolean(getCookie().split("=").pop()));
+        if($("#AutoRefreshChk").prop("checked"))
+            setTimeout("location.reload(true);", 120000);
     });
 
     function getCookie(){
         var list = document.cookie.split(";");
-        return x[0];
+        return list[0];
 
     }
 
