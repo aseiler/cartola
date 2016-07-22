@@ -41,23 +41,31 @@ namespace cartola.entity
 
         public Time Get(string slug)
         {
-
-            using (var client = new HttpClient(new HttpClientHandler { UseDefaultCredentials = false }))
+            try
             {
-                client.BaseAddress = new Uri("https://api.cartolafc.globo.com/");
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                
-                HttpResponseMessage response = client.GetAsync("time/" + slug.Replace(" ", "-")).Result;
-                if (response.IsSuccessStatusCode)
+                using (var client = new HttpClient(new HttpClientHandler { UseDefaultCredentials = false }))
                 {
-                    Task<string> steste = response.Content.ReadAsStringAsync();
+                    client.BaseAddress = new Uri("https://api.cartolafc.globo.com/");
+                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                    Time oTime = JsonConvert.DeserializeObject<Time>(steste.Result.ToString());
-                    return oTime;
+                    HttpResponseMessage response = client.GetAsync("time/" + slug.Replace(" ", "-")).Result;
+                    if (response.IsSuccessStatusCode)
+                    {
+                        Task<string> steste = response.Content.ReadAsStringAsync();
+
+                        Time oTime = JsonConvert.DeserializeObject<Time>(steste.Result.ToString());
+                        return oTime;
+                    }
                 }
+                return new Time();
             }
-            return new Time();
+            catch (HttpListenerException ex)
+            {
+
+                return new Time();
+            }
+
         }
 
     }
