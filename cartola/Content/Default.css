@@ -5,14 +5,18 @@
 .foto_60x60 {
     width: 60px;
     height: 60px;
-    border-radius: 10px;
-    border-style: solid;
-    border-width: thin;
+    background-color:white;
 }
 
 .foto_60x60_escudo {
     width: 60px;
     height: 60px;
+    float:left;
+}
+
+.foto_40x40_escudo {
+    width: 40px;
+    height: 40px;
     float:left;
 }
 
@@ -26,13 +30,13 @@ li.jogador {
 }
 
 #atletas li.time {
-box-shadow: 10px 10px 5px lightgrey;
+box-shadow: 5px 5px 5px lightgrey;
 margin: 10px;
 margin-bottom: 15px;
-border-radius: 25px;
+border-radius: 15px;
 }
 #atletas li.time ul.timedata{
-border-radius: 25px;
+border-radius: 10px;
 border-style:solid;
 color:grey;
 }

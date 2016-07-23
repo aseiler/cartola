@@ -1,14 +1,12 @@
 ﻿@using cartola.entity
 @model List<Time>
 @{
-    int iPosicao = 0;
     ViewBag.Title = "CartolaBz:Times";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <script type="text/javascript">
     function ExibirTime(TimeSlug) {
-
         $("." + TimeSlug).css({ 'display': ($("." + TimeSlug).css('display')=='inline-flex'?'none':'inline-flex') });
     }
 
@@ -19,25 +17,11 @@
     function SombraMouseOver(slug) {
         $("#" + slug).css({ 'box-shadow': '2px 2px lightgrey' });
     }
+    
 
-    function AutoRefresh(element){
-        $("#AutoRefreshChk").attr("class", ($("#AutoRefreshChk").attr("class") == "btn btn-danger" ? "btn btn-success" : "btn btn-danger"));
+    $(document).ready(function () {$("#AutoRefreshChk").prop("checked", ($.cookie("autorefresh")=="true"?true:false)).change();});
 
-        //Colocando valor no cookie
-        var now = new Date();
-        now.setTime(now.getTime() + 1 * 3600 * 1000);
-        document.cookie = "autorefresh=" + ($("#AutoRefreshChk").attr("class") == "btn btn-danger"?"false":"true") + ";expires=" + now.toUTCString() + ";";
-        if(x)
-        setTimeout("location.reload(true);", 120000);   
-    }
-
-    $(document).ready(function(){
-        $("#AutoRefreshChk").prop("checked",Boolean(getCookie().split("=").pop()));
-        if($("#AutoRefreshChk").prop("checked"))
-            setTimeout("location.reload(true);", 120000);
-    });
-
-    function getCookie(){
+    function getCookie() {
         var list = document.cookie.split(";");
         return list[0];
 
@@ -58,7 +42,8 @@
         <ul class="list-inline text-right">
             <li id="autoli">
                 <span></span>
-                <input type="button" class="btn btn-danger" value="Auto refresh" id="AutoRefreshChk" onclick="AutoRefresh('AutoRefreshChk')">
+                @*<input type="button" class="btn btn-danger" value="Auto refresh" id="AutoRefreshChk" onclick="AutoRefresh('AutoRefreshChk')">*@
+                <input type="checkbox" data-toggle="toggle" id="AutoRefreshChk" data-onstyle="success" data-offstyle="danger" data-on="Auto Refresh" data-off="Sem Refresh" />
             </li>
             <li>
                 <input class="btn btn-success" type="button" onclick="window.location.reload()" value="Atualizar" />
@@ -79,19 +64,19 @@
                 <li class="time">
                 <ul class="timedata" style="border-color:#@oTime.oTimeInfo.CorBordaEscudo;background-color:#@oTime.oTimeInfo.CorFundoEscudo">
                     <div>
-                        <img src="@oTime.oTimeInfo.URLEscudoPNG" class="foto_60x60_escudo" />
+                        <img src="@oTime.oTimeInfo.URLEscudoPNG" class="foto_40x40_escudo" />
                         <p><b>@oTime.oTimeInfo.Nome</b></p>
                         <p>@oTime.oTimeInfo.NomeCartola</p>
                         <img class="btnlistar" src="//cartola-bz.umbler.net/Imagem/drag_list_down1600.png" onclick="ExibirTime('@oTime.slug')" alt="Listar @oTime.oTimeInfo.Nome" id="btnlistar_@oTime.slug" onmouseover="SombraMouseOver('btnlistar_@oTime.slug')" onmouseout="SombraMouseOut('btnlistar_@oTime.slug')">
                         <span class="@(oTime.Pontos > 0 ? "green" : "red")" style="float:right;margin-top:-85px;margin-right: 100px;"><h1> @oTime.Pontos.ToString("0.00")</h1> </span>
                     </div>
                 </ul>
-                <ul class=@oTime.slug style="columns:3;display:none;display;margin-left:-45px;padding-bottom:10px">
+                <ul class=@oTime.slug style="columns:3;display:none;display;margin-left:-45px;padding-bottom:10px;">
                     @foreach (Atleta oAtleta in oTime.ListaAtletas.OrderBy(x => x.IdPosicao).ThenBy(x => x.Nome))
                     {
 
                         <li class="jogador">
-                                <img class="foto_60x60" src=@oAtleta.Foto.Replace("_FORMATO","_140x140") title="@oAtleta.Apelido"/>
+                            <img class="foto_60x60 img-thumbnail" src=@oAtleta.Foto.Replace("_FORMATO","_140x140") title="@oAtleta.Apelido" />
                                 <span class="@(@oAtleta.oAtletaPontuado.Pontuacao != 0 ?(@oAtleta.oAtletaPontuado.Pontuacao > 0 ? "nota_green" : "nota_red"):"nota")">
                                     @oAtleta.oAtletaPontuado.Pontuacao.ToString("0.00")
                                 </span>
@@ -123,3 +108,16 @@
         }
 }
 </ul>
+<script type="text/javascript" >
+    $('#AutoRefreshChk').change(function () {
+        //Colocando valor no cookie
+        var now = new Date();
+        now.setTime(now.getTime() + 1 * 3600 * 1000);
+        document.cookie = "autorefresh=" + $("#AutoRefreshChk").prop("checked").toString() + ";expires=" + now.toUTCString() + ";";
+        if ($("#AutoRefreshChk").prop("checked")) {
+            setTimeout("location.reload(true);", 120000);
+            console.log("refresh:5mins");
+        }
+    });
+
+</script>

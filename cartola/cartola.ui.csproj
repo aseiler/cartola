@@ -174,11 +174,14 @@
   <ItemGroup>
     <Content Include="Content\bootstrap-3.3.6-dist\css\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-3.3.6-dist\css\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap-3.3.6-dist\css\bootstrap-toggle.min.css" />
     <Content Include="Content\bootstrap-3.3.6-dist\css\bootstrap.css" />
     <Content Include="Content\bootstrap-3.3.6-dist\css\bootstrap.min.css" />
     <Content Include="Content\bootstrap-3.3.6-dist\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\bootstrap-3.3.6-dist\js\bootstrap-toggle.min.js" />
     <Content Include="Content\bootstrap-3.3.6-dist\js\bootstrap.js" />
     <Content Include="Content\bootstrap-3.3.6-dist\js\bootstrap.min.js" />
+    <Content Include="Content\bootstrap-3.3.6-dist\js\cookie.js" />
     <Content Include="Content\bootstrap-3.3.6-dist\js\npm.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
