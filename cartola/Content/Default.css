@@ -20,25 +20,33 @@
     float:left;
 }
 
-li.jogador {
+.timeColor {
+    float: left;
+    width: 1%;
+    height: 48px;
+}
 
+#atletas {
+    margin-left:10%;
 }
 
 #atletas li {
     list-style:none;
-    margin:10px;
+    margin:3px;
 }
 
 #atletas li.time {
-box-shadow: 5px 5px 5px lightgrey;
-margin: 10px;
-margin-bottom: 15px;
 border-radius: 15px;
+width:90%;
 }
 #atletas li.time ul.timedata{
-border-radius: 10px;
-border-style:solid;
-color:grey;
+    border-radius: 5px;
+    border-style:solid;
+    border-width:1px;
+    border-color: lightgrey;
+    color:grey;
+    width:100%;
+    height:50px;
 }
 
 #txtslugadd{
@@ -85,10 +93,10 @@ display:none;
 }
 
 .btnlistar{
-    width: 45px;
-    height: 45px;
+    width: 30px;
+    height: 30px;
     float: right;
-    margin-top: -65px;
+    margin-top: -55px;
     margin-right: 15px;
 }
 
@@ -221,4 +229,25 @@ display:none;
     font-weight: bold;
     padding: 3px;
     margin-left: 10px;
+}
+
+.well_position {
+    width: 85%;
+    margin-left: 10%;
+}
+
+.nota_time {
+    float:right;
+    margin-top:-50px;
+    margin-right: 15%;
+    font-size: 15px;
+}
+
+.form-group-position{
+    margin-left:10%;
+    width:100%;
+}
+
+.form-group-position input[type=text]{
+    width:80%;
 }
