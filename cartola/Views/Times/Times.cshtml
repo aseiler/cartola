@@ -4,7 +4,7 @@
     ViewBag.Title = "CartolaBz:Times";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<script src="~/Scripts/clock.js"></script>
 <script type="text/javascript">
     function ExibirTime(TimeSlug) {
         $("." + TimeSlug).css({ 'display': ($("." + TimeSlug).css('display') == '-webkit-inline-box' ? 'none' : '-webkit-inline-box') });
@@ -40,9 +40,14 @@
 <br />
     <div class="well well-sm well_position">
     <ul class="list-inline text-right">
+        <li>
+            <div class="progress progress-botton-0">
+                <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" id="clock-progress" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:0%;">
+                    <span id="time"></span>
+                </div>
+            </div>
+        </li>
         <li id="autoli">
-            <span></span>
-            @*<input type="button" class="btn btn-danger" value="Auto refresh" id="AutoRefreshChk" onclick="AutoRefresh('AutoRefreshChk')">*@
             <input type="checkbox" data-toggle="toggle" id="AutoRefreshChk" data-onstyle="success" data-offstyle="danger" data-on="Auto Refresh" data-off="Sem Refresh" />
         </li>
         <li>
@@ -69,8 +74,8 @@
                         <img src="@oTime.oTimeInfo.URLEscudoPNG" class="foto_40x40_escudo" />
                         <p><b>@oTime.oTimeInfo.Nome</b></p>
                         <p>@oTime.oTimeInfo.NomeCartola</p>
-                        <img class="btnlistar" src="//cartola-bz.umbler.net/Imagem/drag_list_down1600.png" onclick="ExibirTime('@oTime.slug')" alt="Listar @oTime.oTimeInfo.Nome" id="btnlistar_@oTime.slug" onmouseover="SombraMouseOver('btnlistar_@oTime.slug')" onmouseout="SombraMouseOut('btnlistar_@oTime.slug')">
                         <span class="@(oTime.Pontos > 0 ? "green" : "red") nota_time">@oTime.Pontos.ToString("0.00")</span>
+                        <img class="btnlistar" src="//cartola-bz.umbler.net/Imagem/drag_list_down1600.png" onclick="ExibirTime('@oTime.slug')" alt="Listar @oTime.oTimeInfo.Nome" id="btnlistar_@oTime.slug" onmouseover="SombraMouseOver('btnlistar_@oTime.slug')" onmouseout="SombraMouseOut('btnlistar_@oTime.slug')">
                     </div>
                 </ul>
                 <ul class=@oTime.slug style="display:none;display;margin-left:-45px;padding-bottom:10px;">
@@ -111,14 +116,16 @@
 }
 </ul>
 <script type="text/javascript" >
+
     $('#AutoRefreshChk').change(function () {
         //Colocando valor no cookie
         var now = new Date();
         now.setTime(now.getTime() + 1 * 3600 * 1000);
         document.cookie = "autorefresh=" + $("#AutoRefreshChk").prop("checked").toString() + ";expires=" + now.toUTCString() + ";";
         if ($("#AutoRefreshChk").prop("checked")) {
-            setTimeout("location.reload(true);", 120000);
+            setTimeout("location.reload(true);", 300000);
             console.log("refresh:5mins");
+            SetCountDown(300, '#time', '#clock-progress');
         }
     });
 
