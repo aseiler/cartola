@@ -1,14 +1,16 @@
-﻿    function ExibirTime(btn,TimeSlug) {
-        $("." + TimeSlug).css({ 'display': ($("." + TimeSlug).css('display') == '-webkit-inline-box' ? 'none' : '-webkit-inline-box') });
-        if ($(btn).children('span').hasClass('glyphicon-chevron-down')) {
+﻿function ExibirTime(btn, TimeSlug) {
+    if ($("." + TimeSlug).css('display') == 'none')
+        $("." + TimeSlug).slideDown('slow', function () {
             $(btn).children('span').removeClass('glyphicon-chevron-down');
             $(btn).children('span').addClass('glyphicon-chevron-up');
-        }
-        else {
+        });
+    else
+        $("." + TimeSlug).hide('slow', function () {
             $(btn).children('span').removeClass('glyphicon-chevron-up');
             $(btn).children('span').addClass('glyphicon-chevron-down');
-        }
-    }
+        });
+
+}
 
 function ExcluirTime(TimeSlug) {
     var x = $.cookie('Cartola').replace('Times=', '').split(',');

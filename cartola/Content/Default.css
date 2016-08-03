@@ -259,8 +259,12 @@ display:none;
     color:aliceblue;
     }
 
-.time-jogadores {
+.block-jogadores {
     display:none;
+}
+
+.time-jogadores {
+    display:-webkit-inline-box;
     padding-bottom:10px;
     overflow-x:auto;
     padding-left: 0px;

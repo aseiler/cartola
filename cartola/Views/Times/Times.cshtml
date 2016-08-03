@@ -59,22 +59,24 @@
                         </div>
                     </div>
                 </ul>
-                    <ul class="time-jogadores @oTime.slug">
-                        @foreach (Atleta oAtleta in oTime.ListaAtletas.OrderBy(x => x.IdPosicao).ThenBy(x => x.Nome))
-                        {
-                            <li class="jogador">
-                                <ul class="jogador-detalhes  @(@oAtleta.oAtletaPontuado.Pontuacao != 0 ?(@oAtleta.oAtletaPontuado.Pontuacao > 0 ? "nota-green" : "nota-red"):"")">
-                                    <li>
-                                        <img class="foto_60x60 img-thumbnail" src=@oAtleta.Foto.Replace("_FORMATO","_140x140") title="@oAtleta.Apelido" />
-                                    </li>
-                                    <li class="nota">
-                                        <span class="atleta-posicao">@oAtleta.IdPosicao</span>
-                                        @oAtleta.oAtletaPontuado.Pontuacao.ToString("0.00")
-                                    </li>
-                                </ul>
-                            </li>
-                        }
-                    </ul>
+                    <div class="block-jogadores @oTime.slug">
+                        <ul class="time-jogadores">
+                            @foreach (Atleta oAtleta in oTime.ListaAtletas.OrderBy(x => x.IdPosicao).ThenBy(x => x.Nome))
+                            {
+                                <li class="jogador">
+                                    <ul class="jogador-detalhes  @(@oAtleta.oAtletaPontuado.Pontuacao != 0 ?(@oAtleta.oAtletaPontuado.Pontuacao > 0 ? "nota-green" : "nota-red"):"")">
+                                        <li>
+                                            <img class="foto_60x60 img-thumbnail" src=@oAtleta.Foto.Replace("_FORMATO","_140x140") title="@oAtleta.Apelido" />
+                                        </li>
+                                        <li class="nota">
+                                            <span class="atleta-posicao">@oAtleta.IdPosicao</span>
+                                            @oAtleta.oAtletaPontuado.Pontuacao.ToString("0.00")
+                                        </li>
+                                    </ul>
+                                </li>
+                            }
+                        </ul>
+                    </div>
 
         </li>
             }
