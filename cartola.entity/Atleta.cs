@@ -12,6 +12,16 @@ using System.Web.Script.Serialization;
 
 namespace cartola.entity
 {
+    public enum Posicao
+    {
+        G=1,
+        L=2,
+        Z=3,
+        M=4,
+        A=5,
+        T=6
+    }
+
     public class Atleta
     {
         #region Properties
@@ -35,7 +45,7 @@ namespace cartola.entity
         public int IdClube { get; set; }
 
         [JsonProperty(PropertyName = "posicao_id")]
-        public int IdPosicao { get; set; }
+        public Posicao IdPosicao { get; set; }
 
         [JsonProperty(PropertyName = "status_id")]
         public int IdStatus { get; set; }

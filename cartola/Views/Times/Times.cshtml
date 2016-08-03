@@ -5,29 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <script src="~/Scripts/clock.js"></script>
-<script type="text/javascript">
-    function ExibirTime(TimeSlug) {
-        $("." + TimeSlug).css({ 'display': ($("." + TimeSlug).css('display') == '-webkit-inline-box' ? 'none' : '-webkit-inline-box') });
-    }
-
-    function SombraMouseOut(slug){
-       $("#" + slug).css({ 'box-shadow': '' });
-    }
-
-    function SombraMouseOver(slug) {
-        $("#" + slug).css({ 'box-shadow': '2px 2px lightgrey' });
-    }
-    
-
-    $(document).ready(function () {$("#AutoRefreshChk").prop("checked", ($.cookie("autorefresh")=="true"?true:false)).change();});
-
-    function getCookie() {
-        var list = document.cookie.split(";");
-        return list[0];
-
-    }
-
-</script>
+<script src="~/Scripts/times.script.js"></script>
 
 @using (Html.BeginForm("Listar", "Times", FormMethod.Get, new { @class = "form-inline" }))
 {
@@ -63,7 +41,7 @@
     @{
         if (Model != null)
         {
-            List<Time> Times = Model.FindAll(x=> x.ListaAtletas != null);
+            List<Time> Times = Model.FindAll(x=> x.ListaAtletas != null && x.ListaAtletas.Count()>0);
             foreach (Time oTime in Times)
             {
                 <li class="time">
@@ -75,40 +53,28 @@
                         <p><b>@oTime.oTimeInfo.Nome</b></p>
                         <p>@oTime.oTimeInfo.NomeCartola</p>
                         <span class="@(oTime.Pontos > 0 ? "green" : "red") nota_time">@oTime.Pontos.ToString("0.00")</span>
-                        <img class="btnlistar" src="//cartola-bz.umbler.net/Imagem/drag_list_down1600.png" onclick="ExibirTime('@oTime.slug')" alt="Listar @oTime.oTimeInfo.Nome" id="btnlistar_@oTime.slug" onmouseover="SombraMouseOver('btnlistar_@oTime.slug')" onmouseout="SombraMouseOut('btnlistar_@oTime.slug')">
+                        <div>
+                            <button type="button" id="excluir" class="btn btn-danger btn-sm time-exluir" onclick="location.href='@Url.Action("Excluir", "Times", new { slug = @oTime.slug })'" title="Excluir @oTime.slug" ><span class="glyphicon glyphicon-remove" /></button>
+                            <button type="button" id="btn-listar" class="btn btn-secondary time-listar" onclick="ExibirTime(this,'@oTime.slug')" title="Exibir @oTime.slug"><span class="glyphicon glyphicon-chevron-down"></span></button>
+                        </div>
                     </div>
                 </ul>
-                <ul class=@oTime.slug style="display:none;display;margin-left:-45px;padding-bottom:10px;">
-                    @foreach (Atleta oAtleta in oTime.ListaAtletas.OrderBy(x => x.IdPosicao).ThenBy(x => x.Nome))
-                    {
-
-                        <li class="jogador">
-                            <img class="foto_60x60 img-thumbnail" src=@oAtleta.Foto.Replace("_FORMATO","_140x140") title="@oAtleta.Apelido" />
-                                <span class="@(@oAtleta.oAtletaPontuado.Pontuacao != 0 ?(@oAtleta.oAtletaPontuado.Pontuacao > 0 ? "nota_green" : "nota_red"):"nota")">
-                                    @oAtleta.oAtletaPontuado.Pontuacao.ToString("0.00")
-                                </span>
-                            <ul id="info">
-                                <li>Nome:@oAtleta.Apelido</li>
-                                <li>Preço:@oAtleta.Preco</li>
-                                <li>Variação: <span class="@(@oAtleta.Variação>0?"green":"red")">@oAtleta.Variação</span></li>
-                            </ul>
-                            <ul class="scout">
-                                <li>Cartao Amarelo:@oAtleta.Scout.CartaoAmarelo</li>
-                                <li>Falta Cometida:@oAtleta.Scout.FaltaCometida</li>
-                                <li>Finalização Defendida:@oAtleta.Scout.FinalizacaoDefendida</li>
-                                <li>Finalizacao Fora:@oAtleta.Scout.FinalizacaoFora</li>
-                                <li>Falta Sofrida:@oAtleta.Scout.FaltaSofrida</li>
-                                <li>Finalizacao Trave:@oAtleta.Scout.FinalizacaoTrave</li>
-                                <li>Gol:@oAtleta.Scout.Gol</li>
-                                <li>Impedimento:@oAtleta.Scout.Impedimento</li>
-                                <li>Passe Errado:@oAtleta.Scout.PasseErrado</li>
-                                <li>Gol:@oAtleta.Scout.Gol</li>
-                                <li>Roubada de Bola:@oAtleta.Scout.RoubadaBola</li>
-                            </ul>
-                        </li>
-
-                    }
-                </ul>
+                    <ul class="time-jogadores @oTime.slug">
+                        @foreach (Atleta oAtleta in oTime.ListaAtletas.OrderBy(x => x.IdPosicao).ThenBy(x => x.Nome))
+                        {
+                            <li class="jogador">
+                                <ul class="jogador-detalhes  @(@oAtleta.oAtletaPontuado.Pontuacao != 0 ?(@oAtleta.oAtletaPontuado.Pontuacao > 0 ? "nota-green" : "nota-red"):"")">
+                                    <li>
+                                        <img class="foto_60x60 img-thumbnail" src=@oAtleta.Foto.Replace("_FORMATO","_140x140") title="@oAtleta.Apelido" />
+                                    </li>
+                                    <li class="nota">
+                                        <span class="atleta-posicao">@oAtleta.IdPosicao</span>
+                                        @oAtleta.oAtletaPontuado.Pontuacao.ToString("0.00")
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+                    </ul>
 
         </li>
             }

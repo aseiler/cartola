@@ -24,6 +24,11 @@ namespace cartola
                 defaults: new { controller = "Times", action = "Listar", slug = UrlParameter.Optional });
 
                 routes.MapRoute(
+                    name: "Excluir",
+                    url: "times/excluir/{slug}",
+                    defaults: new { controller = "Times", action = "Excluir", slug = UrlParameter.Optional });
+
+                routes.MapRoute(
                 name: "Times",
                 url: "Times",
                 defaults: new { controller = "Times", action = "Index", id = UrlParameter.Optional }

@@ -15,41 +15,60 @@ namespace cartola.Controllers
         public ActionResult Index()
         {
             if (Request.Cookies["Cartola"] != null && Request.Cookies["Cartola"]["Times"] != null)
-                Listar(null);
+                Listar(string.Empty);
 
             return View("Times");
         }
-
 
         public ActionResult Listar(string slug)
         {
             List<Time> oReturn = new List<Time>();
             List<string> lstSlug = new List<string>();
             Response.Cookies["Cartola"].Expires = DateTime.Now.AddDays(10);
-            if (slug != null)
+
+            slug = slug.Trim().Replace(' ', '-');
+
+            if (!slug.Equals(string.Empty))
                 lstSlug.Add(slug);
+
             if (Request.Cookies["Cartola"]["Times"] != null)
             {
                 foreach (string o in Request.Cookies["Cartola"]["Times"].Split(','))
                 {
-                    if(!o.Equals(""))
-                    lstSlug.Add(o);
-                    Response.Cookies["Cartola"]["Times"] = null;
+                    if(!o.Equals(string.Empty))
+                        lstSlug.Add(o);
                 }
-            }
-            foreach (string x in lstSlug.Distinct().ToList())
-            { 
-                oReturn.Add(ListarTimes(x));
-                Response.Cookies["Cartola"]["Times"] += x + ",";
+                Response.Cookies["Cartola"]["Times"] = null;
             }
 
+            foreach (string x in lstSlug.Distinct().ToList())
+            {
+                Time oTime = ListarTimes(x);
+
+                if (oTime.ListaAtletas.Count() > 0)
+                    oReturn.Add(oTime);
+                else
+                    lstSlug.Remove(x);
+            }
+
+            Response.Cookies["Cartola"]["Times"] = String.Join(",", lstSlug.Distinct().ToArray());
             oReturn = (List<Time>)oReturn.OrderByDescending(x => x.Pontos).ToList();
 
             return View("Times", oReturn);
 
         }
 
-        public Time ListarTimes(string slug)
+        public ActionResult Excluir(string slug) {
+
+            List<string> lstSlug = Request.Cookies["Cartola"]["Times"].Split(',').ToList();
+
+            lstSlug.Remove(slug);
+
+            Request.Cookies["Cartola"]["Times"] = string.Join(",",lstSlug);
+            return Listar(string.Empty);
+        }
+
+        private Time ListarTimes(string slug)
         {
             Time oTime = new Time();
 
