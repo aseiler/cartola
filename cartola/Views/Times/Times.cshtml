@@ -29,7 +29,7 @@
             <input type="checkbox" data-toggle="toggle" id="AutoRefreshChk" data-onstyle="success" data-offstyle="danger" data-on="Auto Refresh" data-off="Sem Refresh" />
         </li>
         <li>
-            <input class="btn btn-success" type="button" onclick="window.location.reload()" value="Atualizar" />
+            <input class="btn btn-success" type="button" onclick='window.location.reload()' value="Atualizar" />
         </li>
     </ul>
 </div>
@@ -45,20 +45,20 @@
             foreach (Time oTime in Times)
             {
                 <li class="time">
-                <ul class="timedata">
-                    <div class="timeColor" style="background-color:#@oTime.oTimeInfo.CorPrimariaEstampaEscudo;"></div>
-                    <div class="timeColor" style="background-color:#@oTime.oTimeInfo.CorBordaEscudo;"></div>
-                    <div>
-                        <img src="@oTime.oTimeInfo.URLEscudoPNG" class="foto_40x40_escudo" />
-                        <p><b>@oTime.oTimeInfo.Nome</b></p>
-                        <p>@oTime.oTimeInfo.NomeCartola</p>
-                        <span class="@(oTime.Pontos > 0 ? "green" : "red") nota_time">@oTime.Pontos.ToString("0.00")</span>
+                    <div class="time-data">
+                        <button type="button" id="excluir" class="btn btn-danger btn-sm time-exluir" onclick="location.href='@Url.Action("Excluir", "Times", new { slug = @oTime.slug })'" title="Excluir @oTime.slug"><span class="glyphicon glyphicon-remove" /></button>
+                        <div class="time-color first" style="background-color:#@oTime.oTimeInfo.CorPrimariaEstampaEscudo;"></div>
+                        <div class="time-color" style="background-color:#@oTime.oTimeInfo.CorBordaEscudo;"></div>
                         <div>
-                            <button type="button" id="excluir" class="btn btn-danger btn-sm time-exluir" onclick="location.href='@Url.Action("Excluir", "Times", new { slug = @oTime.slug })'" title="Excluir @oTime.slug" ><span class="glyphicon glyphicon-remove" /></button>
-                            <button type="button" id="btn-listar" class="btn btn-secondary time-listar" onclick="ExibirTime(this,'@oTime.slug')" title="Exibir @oTime.slug"><span class="glyphicon glyphicon-chevron-down"></span></button>
+                            <img src="@oTime.oTimeInfo.URLEscudoPNG" class="foto_40x40_escudo" />
+                            <p><b>@oTime.oTimeInfo.Nome</b></p>
+                            <p>@oTime.oTimeInfo.NomeCartola</p>
+                            <span class="@(oTime.Pontos > 0 ? "green" : "red") nota-time">@oTime.Pontos.ToString("0.00")</span>
+                            <div>
+                                <button type="button" id="btn-listar" class="btn btn-secondary time-listar" onclick="ExibirTime(this,'@oTime.slug')" title="Exibir @oTime.slug"><span class="glyphicon glyphicon-chevron-down"></span></button>
+                            </div>
                         </div>
                     </div>
-                </ul>
                     <div class="block-jogadores @oTime.slug">
                         <ul class="time-jogadores">
                             @foreach (Atleta oAtleta in oTime.ListaAtletas.OrderBy(x => x.IdPosicao).ThenBy(x => x.Nome))

@@ -1,3 +1,4 @@
+d:\Documents\GitHub\cartola\cartola\obj\Release\cartola.ui.csprojResolveAssemblyReference.cache
 d:\Documents\GitHub\cartola\cartola\bin\cartola.dll.config
 d:\Documents\GitHub\cartola\cartola\bin\cartola.dll
 d:\Documents\GitHub\cartola\cartola\bin\cartola.pdb
@@ -54,6 +55,5 @@ d:\Documents\GitHub\cartola\cartola\bin\Microsoft.Owin.Security.OAuth.xml
 d:\Documents\GitHub\cartola\cartola\bin\Microsoft.Owin.Security.Google.xml
 d:\Documents\GitHub\cartola\cartola\bin\Microsoft.Owin.Security.Twitter.xml
 d:\Documents\GitHub\cartola\cartola\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-d:\Documents\GitHub\cartola\cartola\obj\Release\cartola.ui.csprojResolveAssemblyReference.cache
 d:\Documents\GitHub\cartola\cartola\obj\Release\cartola.dll
 d:\Documents\GitHub\cartola\cartola\obj\Release\cartola.pdb

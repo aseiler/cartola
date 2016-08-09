@@ -71,7 +71,7 @@ namespace cartola.Controllers
             Time oTime = new Time();
 
             Pontuados oPontuados = new Pontuados();
-            JObject oPont = oPontuados.Get();
+            JObject lstAtletasPontuado = oPontuados.GetJToken();
             Time oT = oTime.Get(slug);
             oT.slug = slug;
 
@@ -79,10 +79,7 @@ namespace cartola.Controllers
             {
                 foreach (Atleta o in oT.ListaAtletas)
                 {
-                    if (oPont != null && oPont["atletas"][o.IdAtleta.ToString()] != null)
-                        o.oAtletaPontuado = JsonConvert.DeserializeObject<AtletaPontuado>(oPont["atletas"][o.IdAtleta.ToString()].ToString());
-                    else
-                        o.oAtletaPontuado = new AtletaPontuado();
+                    o.oAtletaPontuado = JsonConvert.DeserializeObject <AtletaPontuado>(lstAtletasPontuado["atletas"][o.IdAtleta.ToString()].ToString());
                 }
             }
             else

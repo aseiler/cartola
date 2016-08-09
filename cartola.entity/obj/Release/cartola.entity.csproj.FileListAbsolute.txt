@@ -1,6 +1,6 @@
+d:\Documents\GitHub\cartola\cartola.entity\obj\Release\cartola.entity.csprojResolveAssemblyReference.cache
 d:\Documents\GitHub\cartola\cartola.entity\bin\Release\cartola.entity.dll
 d:\Documents\GitHub\cartola\cartola.entity\bin\Release\cartola.entity.pdb
 d:\Documents\GitHub\cartola\cartola.entity\bin\Release\Newtonsoft.Json.dll
-d:\Documents\GitHub\cartola\cartola.entity\obj\Release\cartola.entity.csprojResolveAssemblyReference.cache
 d:\Documents\GitHub\cartola\cartola.entity\obj\Release\cartola.entity.dll
 d:\Documents\GitHub\cartola\cartola.entity\obj\Release\cartola.entity.pdb

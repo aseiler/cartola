@@ -20,10 +20,14 @@
     float:left;
 }
 
-.timeColor {
+.time-color {
     float: left;
     width: 1%;
     height: 48px;
+}
+
+.time-color.first {
+    margin-left:5px;
 }
 
 #atletas {
@@ -39,7 +43,7 @@
 border-radius: 15px;
 width:90%;
 }
-#atletas li.time ul.timedata{
+#atletas li.time div.time-data{
     border-radius: 5px;
     border-style:solid;
     border-width:1px;
@@ -101,9 +105,8 @@ display:none;
 }
 
 .time-exluir {
-    float: right;
-    margin-top: -52px;
-    margin-right: 55px;
+    float:left;
+    margin-top:8px;
 }
 
 .nota-green{
@@ -233,10 +236,10 @@ display:none;
     margin-left: 10%;
 }
 
-.nota_time {
+.nota-time {
     float:right;
     margin-top:-50px;
-    margin-right: 15%;
+    margin-right: 10%;
     font-size: 15px;
 }
 

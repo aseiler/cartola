@@ -9,6 +9,8 @@ namespace cartola.entity
 {
     public class AtletaPontuado
     {
+        public int IdAtleta { get; set; }
+
         [JsonProperty(PropertyName = "apelido")]
         public string Apelido { get; set; }
 

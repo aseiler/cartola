@@ -32,8 +32,10 @@ namespace cartola.entity
 
         #region Methods
 
-        public JObject Get()
+        public List<AtletaPontuado> Get()
         {
+            JToken[] lstJogadores = null;
+            List<AtletaPontuado> lstAp = new List<AtletaPontuado>();
 
             using (var client = new HttpClient(new HttpClientHandler { UseDefaultCredentials = false }))
             {
@@ -48,11 +50,40 @@ namespace cartola.entity
 
                     Pontuados oPontuados = new Pontuados();
                     oPontuados.ListaAtletas = new List<AtletaPontuado>();
-                    return JObject.Parse(steste.Result.ToString());
+                    JObject oPont = JObject.Parse(steste.Result.ToString());
+                    lstJogadores = oPont["atletas"].ToArray();
+                }
+                
+                foreach (JToken o in lstJogadores)
+                {
+                    lstAp.Add(JsonConvert.DeserializeObject<AtletaPontuado>(o.First.ToString()));   
+                }
+                return lstAp;
+            }
+        }
+
+        public JObject GetJToken()
+        {
+            using (var client = new HttpClient(new HttpClientHandler { UseDefaultCredentials = false }))
+            {
+                client.BaseAddress = new Uri("https://api.cartolafc.globo.com/");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                HttpResponseMessage response = client.GetAsync("/atletas/pontuados").Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    Task<string> steste = response.Content.ReadAsStringAsync();
+
+                    Pontuados oPontuados = new Pontuados();
+                    oPontuados.ListaAtletas = new List<AtletaPontuado>();
+                    JObject oPont = JObject.Parse(steste.Result.ToString());
+                    return oPont;
                 }
             }
             return null;
         }
-    }
         #endregion
+    }
+        
 }
