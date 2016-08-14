@@ -1,5 +1,6 @@
 ﻿@using cartola.entity;
 @model List<AtletaPontuado>
+
 @{
     ViewBag.Title = "Pontuacao";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -11,8 +12,12 @@
 
 </style>
 
+<div class="alert @(ViewBag.MercadoStatus.StatusMercado == MercadoStatus.StatusRodada.Fechado ? "alert-danger" : "alert-sucess") fade in"> Estado do Mercado:<b>@ViewBag.MercadoStatus.StatusMercado</b></div>
+
 <div style="margin-left: 30%;">
-    @foreach (AtletaPontuado o in Model.OrderByDescending(x => x.Pontuacao))
+    @if(ViewBag.MercadoStatus.StatusMercado == MercadoStatus.StatusRodada.Fechado)
+    { 
+    foreach (AtletaPontuado o in Model.OrderByDescending(x => x.Pontuacao))
     {
         <ul class="list-group" style="width:40%;font-weight: bold;">
             <li class="list-group-item">
@@ -41,5 +46,6 @@
                 <span style="margin-top:7%;float:right;color:@((o.Pontuacao > 0 ? "#26ca5e" : "#ff0320")); ">@o.Pontuacao.ToString("0.00")</span>
             </li>
         </ul>
+    }
     }
 </div>

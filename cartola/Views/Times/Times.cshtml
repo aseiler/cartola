@@ -50,7 +50,7 @@
                         <div class="time-color first" style="background-color:#@oTime.oTimeInfo.CorPrimariaEstampaEscudo;"></div>
                         <div class="time-color" style="background-color:#@oTime.oTimeInfo.CorBordaEscudo;"></div>
                         <div>
-                            <img src="@oTime.oTimeInfo.URLEscudoPNG" class="foto_40x40_escudo" />
+                            <img src="@oTime.oTimeInfo.URLEscudoPNG" class="foto_40x40_escudo" onerror="this.onerror = null;this.src='/Imagem/no-img.jpg'" />
                             <p><b>@oTime.oTimeInfo.Nome</b></p>
                             <p>@oTime.oTimeInfo.NomeCartola</p>
                             <span class="@(oTime.Pontos > 0 ? "green" : "red") nota-time">@oTime.Pontos.ToString("0.00")</span>

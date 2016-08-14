@@ -15,8 +15,17 @@ namespace cartola.Controllers
         // GET: Pontuacao
         public ActionResult Index()
         {
-            Pontuados oPontuados = new Pontuados();
-            return View("Pontuacao",  oPontuados.Get());
+            MercadoStatus oMerc = new MercadoStatus();
+            ViewBag.MercadoStatus = oMerc.Get();
+
+            if (ViewBag.MercadoStatus.StatusMercado == MercadoStatus.StatusRodada.Fechado)
+            {
+                Pontuados oPontuados = new Pontuados();
+                return View("Pontuacao", oPontuados.Get());
+            }
+
+
+            return View("Pontuacao");
         }
         #endregion
 

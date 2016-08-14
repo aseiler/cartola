@@ -71,22 +71,38 @@ namespace cartola.Controllers
             Time oTime = new Time();
 
             Pontuados oPontuados = new Pontuados();
+            MercadoStatus oMercadoStatus = new MercadoStatus();
             JObject lstAtletasPontuado = oPontuados.GetJToken();
             Time oT = oTime.Get(slug);
             oT.slug = slug;
+            MercadoStatus oMerc = oMercadoStatus.Get();
 
-            if (oT.ListaAtletas != null)
+            switch (oMerc.StatusMercado)
             {
-                foreach (Atleta o in oT.ListaAtletas)
-                {
-                    o.oAtletaPontuado = JsonConvert.DeserializeObject <AtletaPontuado>(lstAtletasPontuado["atletas"][o.IdAtleta.ToString()].ToString());
-                }
+                case MercadoStatus.StatusRodada.Fechado:
+                    if (oT.ListaAtletas != null)
+                    {
+                        foreach (Atleta o in oT.ListaAtletas)
+                        {
+                            if (lstAtletasPontuado["atletas"][o.IdAtleta.ToString()] != null)
+                                o.oAtletaPontuado = JsonConvert.DeserializeObject<AtletaPontuado>(lstAtletasPontuado["atletas"][o.IdAtleta.ToString()].ToString());
+                            else
+                                o.oAtletaPontuado = new AtletaPontuado();
+                        }
+                    }
+                    else
+                        oT.ListaAtletas = new List<Atleta>();
+
+                    
+                    break;
+                case MercadoStatus.StatusRodada.Aberto:
+                    foreach (Atleta o in oT.ListaAtletas)
+                    {
+                        o.oAtletaPontuado = new AtletaPontuado { Pontuacao = o.NumeroPontos};
+                    }
+                    break;
             }
-            else
-                oT.ListaAtletas = new List<Atleta>();
-
             oT.Pontos = oT.ListaAtletas.Sum(x => x.oAtletaPontuado.Pontuacao);
-
             return oT;
         }
     }

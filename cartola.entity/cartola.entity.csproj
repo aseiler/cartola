@@ -45,6 +45,8 @@
   <ItemGroup>
     <Compile Include="Atleta.cs" />
     <Compile Include="AtletaPontuado.cs" />
+    <Compile Include="Destaques.cs" />
+    <Compile Include="MercadoStatus.cs" />
     <Compile Include="Pontuados.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scout.cs" />
