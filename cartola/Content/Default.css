@@ -290,3 +290,40 @@ display:none;
     width:25%;
     border-right:solid 1px;
 }
+
+.list-partida {
+    width: 80%;
+    margin-left: 10%;
+    text-align:center;
+    font-weight: 900;
+    color: grey;
+}
+
+.jogo-partida {
+   width:100%;
+    list-style:none;
+    padding-left:0px;
+    display:-webkit-inline-box;
+}
+
+.jogo-partida li {
+    width:20%;
+     
+}
+
+.jogo-partida li.jogo-placar {
+    width:35%;
+}
+
+.jogo-partida li.badge-li {
+    width:8%;
+    text-align:center;
+    }
+.jogo-partida li.escudo {
+    width:30px;
+    }
+.panel-size {
+    width:80%;
+    margin-left:10%;
+    text-align:center;
+}

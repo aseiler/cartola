@@ -1,9 +1,34 @@
-﻿
+﻿@using cartola.entity
+@model Partidas
 @{
     ViewBag.Title = "Home";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+    <div class="panel panel-primary panel-size">
+    <div class="panel-heading">Rodada</div>
+    <div class="panel-body">@Model.Rodada </div>
+    </div>
 
+    <ul class="list-group list-partida">
+        @foreach (Partida o in Model.lstPartida)
+        {
+            Clube oClubMand = Model.lstClube.Find(x => x.Id == o.IdClubeCasa);
+            Clube oClubVisit = Model.lstClube.Find(x => x.Id == o.IdClubeVisitante);
+            <li class="list-group-item jogo">
+                <ul class="jogo-partida">
+                    <li class="badge-li"><span class="badge">@oClubMand.Posicao º</span></li>
+                    <li class="escudo"><img src="@oClubMand.oEscudo.Foto30x30" /></li>
+                    <li>@oClubMand.Nome</li>
+                    <li class="jogo-placar">
+                        @o.PlacarMandante x @o.PlacarVisitante
+                    </li>
+                    <li>@oClubVisit.Nome</li>
+                    <li class="escudo"><img src="@oClubVisit.oEscudo.Foto30x30" /></li>
+                    <li class="badge-li"><span class="badge">@oClubVisit.Posicao º</span></li>
+                </ul>
+                    </li>
+        }
+    </ul>
 
 
 

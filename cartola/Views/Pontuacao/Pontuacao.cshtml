@@ -12,7 +12,7 @@
 
 </style>
 
-<div class="alert @(ViewBag.MercadoStatus.StatusMercado == MercadoStatus.StatusRodada.Fechado ? "alert-danger" : "alert-sucess") fade in"> Estado do Mercado:<b>@ViewBag.MercadoStatus.StatusMercado</b></div>
+<div class="alert @(ViewBag.MercadoStatus.StatusMercado == MercadoStatus.StatusRodada.Fechado ? "alert-danger" : "alert-success") fade in"> Estado do Mercado:<b>@ViewBag.MercadoStatus.StatusMercado</b></div>
 
 <div style="margin-left: 30%;">
     @if(ViewBag.MercadoStatus.StatusMercado == MercadoStatus.StatusRodada.Fechado)
